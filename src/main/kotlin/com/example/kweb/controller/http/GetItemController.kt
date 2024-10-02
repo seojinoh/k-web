@@ -7,7 +7,7 @@ import com.example.kweb.controller.http.model.ItemErrorMessage.PAGE_SIZE_RANGE
 import com.example.kweb.controller.http.model.ItemFieldName.ITEM_ID
 import com.example.kweb.controller.http.model.ItemFieldName.PAGE
 import com.example.kweb.controller.http.model.ItemFieldName.PAGE_SIZE
-import com.example.kweb.controller.http.model.ItemFieldName.QUERY
+import com.example.kweb.controller.http.model.ItemFieldName.SEARCH
 import com.example.kweb.controller.http.model.ManagedItemResponse
 import com.example.kweb.domain.Filter
 import com.example.kweb.service.ReadItem
@@ -29,10 +29,8 @@ class GetItemController(
     }
 
     @GetMapping("/items/all")
-    fun getAllItems(): List<ManagedItemResponse> = readItem.readAllItems().map { item ->
-        ManagedItemResponse.convert(
-            managedItem = item,
-        )
+    fun getAllItems(): List<ManagedItemResponse> = readItem.readAllItems().map { managedItem ->
+        ManagedItemResponse.convert(managedItem)
     }
 
     @GetMapping("/items")
@@ -46,12 +44,16 @@ class GetItemController(
         @RequestParam(PAGE_SIZE)
         pageSize: Long? = DEFAULT_PAGE_SIZE,
 
-        @RequestParam(QUERY)
-        search: String?,
-    ): List<ManagedItemResponse> = readItem.readItemsWithFilter(filter = Filter(page, pageSize, search)).map { item ->
-        ManagedItemResponse.convert(
-            managedItem = item,
+        @RequestParam(SEARCH)
+        search: String?
+    ): List<ManagedItemResponse> = readItem.readItemsWithFilter(
+        filter = Filter(
+            page!!,
+            pageSize!!,
+            search
         )
+    ).map { managedItem ->
+        ManagedItemResponse.convert(managedItem)
     }
 
     @GetMapping("/item/{$ITEM_ID}")
@@ -59,8 +61,8 @@ class GetItemController(
         @NotNull(message = ITEM_ID_NOT_NULL)
         @Min(1, message = ITEM_ID_RANGE)
         @PathVariable(ITEM_ID)
-        itemId: Long?,
+        itemId: Long?
     ): ManagedItemResponse = ManagedItemResponse.convert(
-        managedItem = readItem.readItemById(id = itemId!!),
+        managedItem = readItem.readItemById(id = itemId!!)
     )
 }

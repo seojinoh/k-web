@@ -3,7 +3,7 @@ package com.example.kweb.controller.http.model
 object ItemFieldName {
     const val PAGE = "page"
     const val PAGE_SIZE = "page_size"
-    const val QUERY = "query"
+    const val SEARCH = "search"
 
     const val ITEM_ID = "item_id"
     const val CREATE_DATETIME = "create_datetime"
