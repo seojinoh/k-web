@@ -25,14 +25,14 @@ class PutItemController(
 
         @Validated
         @RequestBody
-        body: PutItemRequest,
+        body: PutItemRequest
     ): ManagedItemResponse = ManagedItemResponse.convert(
         managedItem = updateItem.updateItemById(
             id = itemId!!,
             description = body.itemDescription!!,
             category = body.itemCategory!!,
             price = body.itemPrice,
-            count = body.itemCount,
+            count = body.itemCount
         )
     )
 }

@@ -14,20 +14,13 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 data class ManagedItemResponse(
-    @JsonProperty(ITEM_ID)
-    val itemId: Long,
-    @JsonProperty(CREATE_DATETIME)
-    val createDatetime: String,
-    @JsonProperty(ITEM_PRICE)
-    val itemPrice: Long?,
-    @JsonProperty(ITEM_COUNT)
-    val itemCount: Long?,
-    @JsonProperty(ITEM_NAME)
-    val itemName: String,
-    @JsonProperty(ITEM_DESCRIPTION)
-    val itemDescription: String,
-    @JsonProperty(ITEM_CATEGORY)
-    val itemCategory: String,
+    @JsonProperty(ITEM_ID) val itemId: Long,
+    @JsonProperty(CREATE_DATETIME) val createDatetime: String,
+    @JsonProperty(ITEM_PRICE) val itemPrice: Long?,
+    @JsonProperty(ITEM_COUNT) val itemCount: Long?,
+    @JsonProperty(ITEM_NAME) val itemName: String,
+    @JsonProperty(ITEM_DESCRIPTION) val itemDescription: String,
+    @JsonProperty(ITEM_CATEGORY) val itemCategory: String
 ) {
     companion object {
         private fun toDatetime(timestamp: Timestamp): String {
@@ -45,7 +38,7 @@ data class ManagedItemResponse(
                 itemCount = managedItem.count,
                 itemName = managedItem.item.name,
                 itemDescription = managedItem.item.description,
-                itemCategory = managedItem.item.category,
+                itemCategory = managedItem.item.category
             )
         }
     }

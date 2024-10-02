@@ -25,7 +25,7 @@ class PostItemController(
             description = body.itemDescription!!,
             category = body.itemCategory!!,
             price = body.itemPrice,
-            count = body.itemCount,
+            count = body.itemCount
         )
     )
 }

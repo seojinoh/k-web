@@ -28,5 +28,5 @@ data class PutItemRequest(
 
     @field:Min(0, message = ITEM_COUNT_RANGE)
     @JsonProperty(ItemFieldName.ITEM_COUNT)
-    val itemCount: Long?,
+    val itemCount: Long?
 )

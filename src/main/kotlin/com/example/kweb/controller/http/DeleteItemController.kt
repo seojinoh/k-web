@@ -20,8 +20,8 @@ class DeleteItemController(
         @NotNull(message = ItemErrorMessage.ITEM_ID_NOT_NULL)
         @Min(1, message = ItemErrorMessage.ITEM_ID_RANGE)
         @PathVariable(ItemFieldName.ITEM_ID)
-        itemId: Long?,
+        itemId: Long?
     ): ManagedItemResponse = ManagedItemResponse.convert(
-        managedItem = deleteItem.deleteItemById(id = itemId!!),
+        managedItem = deleteItem.deleteItemById(id = itemId!!)
     )
 }
