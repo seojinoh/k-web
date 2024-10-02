@@ -15,7 +15,7 @@ interface ItemRepository {
         description: String,
         category: String,
         price: Long?,
-        count: Long?,
+        count: Long?
     ): ManagedItem
 
     fun updateItemById(
@@ -23,7 +23,7 @@ interface ItemRepository {
         description: String,
         category: String,
         price: Long?,
-        count: Long?,
+        count: Long?
     ): ManagedItem
 
     fun deleteItemById(id: Long): ManagedItem

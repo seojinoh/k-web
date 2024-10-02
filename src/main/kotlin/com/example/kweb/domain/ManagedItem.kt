@@ -7,5 +7,5 @@ data class ManagedItem(
     val createTimestamp: Timestamp,
     val price: Long?,
     val count: Long?,
-    val item: Item,
+    val item: Item
 )

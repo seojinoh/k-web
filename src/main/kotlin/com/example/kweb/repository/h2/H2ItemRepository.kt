@@ -19,7 +19,7 @@ class H2ItemRepository(
     override fun readItemWithFilter(filter: Filter): List<ManagedItem> = h2ItemMapper.readItemWithFilter(
         limit = filter.pageSize,
         offset = (filter.page - 1) * filter.pageSize,
-        search = filter.search ?: "",
+        search = filter.search ?: ""
     ).map { itemResult ->
         ItemResult.toManagedItem(itemResult)
     }
@@ -33,14 +33,14 @@ class H2ItemRepository(
         description: String,
         category: String,
         price: Long?,
-        count: Long?,
+        count: Long?
     ): ManagedItem {
         val insertItemRequest = InsertItemRequest(
             name = name,
             description = description,
             category = category,
             price = price,
-            count = count,
+            count = count
         )
         h2ItemMapper.createItem(insertItemRequest)
 
@@ -52,14 +52,14 @@ class H2ItemRepository(
         description: String,
         category: String,
         price: Long?,
-        count: Long?,
+        count: Long?
     ): ManagedItem {
         val updateItemRequest = UpdateItemRequest(
             id = id,
             description = description,
             category = category,
             price = price,
-            count = count,
+            count = count
         )
         h2ItemMapper.updateItemById(updateItemRequest)
 

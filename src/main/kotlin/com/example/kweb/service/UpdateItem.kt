@@ -8,6 +8,6 @@ interface UpdateItem {
         description: String,
         category: String,
         price: Long?,
-        count: Long?,
+        count: Long?
     ): ManagedItem
 }

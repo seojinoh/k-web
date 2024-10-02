@@ -18,7 +18,7 @@ class PostItemController(
     fun postItem(
         @Validated
         @RequestBody
-        body: PostItemRequest,
+        body: PostItemRequest
     ): ManagedItemResponse = ManagedItemResponse.convert(
         managedItem = createItem.createItem(
             name = body.itemName!!,

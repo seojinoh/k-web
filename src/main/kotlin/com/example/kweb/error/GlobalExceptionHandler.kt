@@ -21,7 +21,7 @@ class GlobalExceptionHandler {
 
         return ErrorResponse(
             name = ErrorName.INVALID_ARGUMENT,
-            message = constraintViolation?.message,
+            message = constraintViolation?.message
         )
     }
 
@@ -33,7 +33,7 @@ class GlobalExceptionHandler {
 
         return ErrorResponse(
             name = ErrorName.INVALID_ARGUMENT,
-            message = fieldError?.defaultMessage,
+            message = fieldError?.defaultMessage
         )
     }
 
@@ -43,7 +43,7 @@ class GlobalExceptionHandler {
     fun handleNoHandlerFoundException(ex: NoHandlerFoundException): ErrorResponse {
         return ErrorResponse(
             name = ErrorName.NOT_FOUND,
-            message = ex.message,
+            message = ex.message
         )
     }
 
@@ -53,7 +53,7 @@ class GlobalExceptionHandler {
     fun handleGenericException(ex: Exception): ErrorResponse {
         return ErrorResponse(
             name = ErrorName.INTERNAL_SERVER_ERROR,
-            message = ex.message,
+            message = ex.message
         )
     }
 }
