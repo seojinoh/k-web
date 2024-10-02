@@ -4,11 +4,9 @@ import com.example.kweb.domain.Filter
 import com.example.kweb.domain.Item
 import com.example.kweb.domain.ManagedItem
 import com.example.kweb.repository.ItemRepository
-import org.springframework.stereotype.Repository
 import java.sql.Timestamp
 import java.time.Instant
 
-@Repository
 class MockItemRepository: ItemRepository {
     override fun readAllItems(): List<ManagedItem> = listOf(
         ManagedItem(
@@ -20,7 +18,7 @@ class MockItemRepository: ItemRepository {
                 name = "Nike Cortez",
                 description = "275 mm",
                 category = "sneakers"
-            ),
+            )
         ),
         ManagedItem(
             id = 2,
@@ -31,7 +29,7 @@ class MockItemRepository: ItemRepository {
                 name = "Dr. Martens 1461",
                 description = "265 mm",
                 category = "dress_shoes"
-            ),
+            )
         ),
         ManagedItem(
             id = 3,
@@ -42,8 +40,8 @@ class MockItemRepository: ItemRepository {
                 name = "Crocs Classic Clog",
                 description = "275 mm",
                 category = "sandals"
-            ),
-        ),
+            )
+        )
     )
 
     override fun readItemWithFilter(filter: Filter): List<ManagedItem> = listOf(
@@ -56,7 +54,7 @@ class MockItemRepository: ItemRepository {
                 name = "Nike Cortez",
                 description = "275 mm",
                 category = "sneakers"
-            ),
+            )
         ),
         ManagedItem(
             id = 2,
@@ -67,7 +65,7 @@ class MockItemRepository: ItemRepository {
                 name = "Dr. Martens 1461",
                 description = "265 mm",
                 category = "dress_shoes"
-            ),
+            )
         ),
         ManagedItem(
             id = 3,
@@ -78,8 +76,8 @@ class MockItemRepository: ItemRepository {
                 name = "Crocs Classic Clog",
                 description = "275 mm",
                 category = "sandals"
-            ),
-        ),
+            )
+        )
     )
 
     override fun readItemById(id: Long): ManagedItem = ManagedItem(
@@ -91,7 +89,7 @@ class MockItemRepository: ItemRepository {
             name = "Nike Cortez",
             description = "275 mm",
             category = "sneakers"
-        ),
+        )
     )
 
     override fun createItem(
@@ -109,7 +107,7 @@ class MockItemRepository: ItemRepository {
             name = "Adidas Superstar",
             description = "275 mm",
             category = "sneakers"
-        ),
+        )
     )
 
     override fun updateItemById(
@@ -127,7 +125,7 @@ class MockItemRepository: ItemRepository {
             name = "Adidas Superstar",
             description = "275 mm",
             category = "sneakers"
-        ),
+        )
     )
 
     override fun deleteItemById(id: Long): ManagedItem = ManagedItem(
@@ -139,6 +137,6 @@ class MockItemRepository: ItemRepository {
             name = "Adidas Superstar",
             description = "275 mm",
             category = "sneakers"
-        ),
+        )
     )
 }
