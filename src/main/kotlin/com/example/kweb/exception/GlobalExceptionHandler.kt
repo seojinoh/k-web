@@ -2,6 +2,7 @@ package com.example.kweb.exception
 
 import com.example.kweb.error.model.ErrorName
 import com.example.kweb.error.model.ErrorResponse
+import com.example.kweb.exception.custom.BadRequest
 import jakarta.validation.ConstraintViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -13,6 +14,16 @@ import org.springframework.web.servlet.NoHandlerFoundException
 
 @ControllerAdvice
 class GlobalExceptionHandler {
+    @ExceptionHandler(BadRequest::class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    fun handleBadRequestCustomException(ex: BadRequest): ErrorResponse {
+        return ErrorResponse(
+            name = ex.name,
+            message = ex.message
+        )
+    }
+
     @ExceptionHandler(ConstraintViolationException::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
