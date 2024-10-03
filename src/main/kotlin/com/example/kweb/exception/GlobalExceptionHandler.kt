@@ -1,4 +1,4 @@
-package com.example.kweb.error
+package com.example.kweb.exception
 
 import com.example.kweb.error.model.ErrorName
 import com.example.kweb.error.model.ErrorResponse
