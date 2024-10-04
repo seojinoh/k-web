@@ -8,7 +8,7 @@ interface ItemRepository {
 
     fun readItemWithFilter(filter: Filter): List<ManagedItem>
 
-    fun readItemById(id: Long): ManagedItem
+    fun readItemById(id: Long): ManagedItem?
 
     fun createItem(
         name: String,
@@ -24,7 +24,7 @@ interface ItemRepository {
         category: String,
         price: Long?,
         count: Long?
-    ): ManagedItem
+    ): ManagedItem?
 
-    fun deleteItemById(id: Long): ManagedItem
+    fun deleteItemById(id: Long): ManagedItem?
 }

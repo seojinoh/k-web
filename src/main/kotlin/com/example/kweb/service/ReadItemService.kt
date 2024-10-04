@@ -2,6 +2,8 @@ package com.example.kweb.service
 
 import com.example.kweb.domain.Filter
 import com.example.kweb.domain.ManagedItem
+import com.example.kweb.error.model.ErrorMessage
+import com.example.kweb.exception.custom.NotFoundException
 import com.example.kweb.repository.ItemRepository
 import org.springframework.stereotype.Service
 
@@ -13,5 +15,6 @@ class ReadItemService(
 
     override fun readItemsWithFilter(filter: Filter): List<ManagedItem> = itemRepository.readItemWithFilter(filter)
 
-    override fun readItemById(id: Long): ManagedItem = itemRepository.readItemById(id)
+    override fun readItemById(id: Long): ManagedItem =
+        itemRepository.readItemById(id) ?: throw NotFoundException(message = ErrorMessage.ITEM_NOT_FOUND)
 }

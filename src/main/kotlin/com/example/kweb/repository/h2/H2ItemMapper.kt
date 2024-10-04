@@ -37,7 +37,9 @@ interface H2ItemMapper {
         WHERE
             id = #{id}
     """)
-    fun readItemById(@Param("id") id: Long): ItemResult
+    fun readItemById(
+        @Param("id") id: Long
+    ): ItemResult?
 
     @Insert("""
         INSERT INTO item (
@@ -79,5 +81,7 @@ interface H2ItemMapper {
         WHERE
             id = #{id}
     """)
-    fun deleteItemById(@Param("id") id: Long): Long
+    fun deleteItemById(
+        @Param("id") id: Long
+    ): Long
 }

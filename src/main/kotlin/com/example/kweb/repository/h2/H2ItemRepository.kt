@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class H2ItemRepository(
     private val h2ItemMapper: H2ItemMapper
-) : ItemRepository {
+): ItemRepository {
     override fun readAllItems(): List<ManagedItem> = h2ItemMapper.readAllItems().map { itemResult ->
         ItemResult.toManagedItem(itemResult)
     }
@@ -24,9 +24,11 @@ class H2ItemRepository(
         ItemResult.toManagedItem(itemResult)
     }
 
-    override fun readItemById(id: Long): ManagedItem = ItemResult.toManagedItem(
-        itemResult = h2ItemMapper.readItemById(id)
-    )
+    override fun readItemById(id: Long): ManagedItem? {
+        val itemResult = h2ItemMapper.readItemById(id)
+
+        return itemResult?.let { ItemResult.toManagedItem(it) }
+    }
 
     override fun createItem(
         name: String,
@@ -44,7 +46,7 @@ class H2ItemRepository(
         )
         h2ItemMapper.createItem(insertItemRequest)
 
-        return readItemById(insertItemRequest.id!!)
+        return readItemById(insertItemRequest.id!!)!!
     }
 
     override fun updateItemById(
@@ -53,7 +55,7 @@ class H2ItemRepository(
         category: String,
         price: Long?,
         count: Long?
-    ): ManagedItem {
+    ): ManagedItem? {
         val updateItemRequest = UpdateItemRequest(
             id = id,
             description = description,
@@ -61,15 +63,23 @@ class H2ItemRepository(
             price = price,
             count = count
         )
-        h2ItemMapper.updateItemById(updateItemRequest)
+        val updatedRowCount = h2ItemMapper.updateItemById(updateItemRequest)
 
-        return readItemById(id)
+        return if (updatedRowCount > 0) {
+            readItemById(id)
+        } else {
+            null
+        }
     }
 
-    override fun deleteItemById(id: Long): ManagedItem {
+    override fun deleteItemById(id: Long): ManagedItem? {
         val managedItem = readItemById(id)
-        h2ItemMapper.deleteItemById(id)
+        val deletedRowCount = h2ItemMapper.deleteItemById(id)
 
-        return managedItem
+        return if (deletedRowCount > 0) {
+            managedItem
+        } else {
+            null
+        }
     }
 }
